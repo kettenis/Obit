@@ -923,8 +923,8 @@ SetupFitter (ObitUVGSolveWB *in, ObitUV *inUV, ObitErr* err)
   /* Setup for coarse IF result fitting */
   in->ndataCoarse      = in->numIF;
   in->ncoefCoarse      = 2;
-  if (in->ndataCoarse>1) {
 #if HAVE_GSL==1  /* GSL stuff */
+  if (in->ndataCoarse>1) {
     ndata = in->numIF;  /* Number of data points */
     ncoef = 2;          /* Fitting phase and delay */
     T = gsl_multifit_fdfsolver_lmsder;
