@@ -2315,6 +2315,7 @@ static void doFitGSL (ObitPolnCalFit *in, ObitErr *err)
   gsl_multifit_fdfsolver *solver = in->solver;
   gsl_matrix *covar              = in->covar;
   gsl_vector *work               = in->work;
+  gsl_matrix *J;
 
   if (err->error) return;  /* Error exists? */
   
@@ -2478,7 +2479,14 @@ static void doFitGSL (ObitPolnCalFit *in, ObitErr *err)
   /* Errors */
   if (in->doError) {
     /* Get covariance matrix - extract diagonal terms */
-    gsl_multifit_covar (solver->J, 0.0, covar);
+    J = gsl_matrix_alloc(in->ndata, in->nparam);
+#ifdef HAVE_GSL_MULTIFIT_FDFSOLVER_JAC
+    gsl_multifit_fdfsolver_jac(solver, J);
+#else
+    gsl_matrix_memcpy(J, solver->J);
+#endif
+    gsl_multifit_covar (J, 0.0, covar);
+    gsl_matrix_free(J);
     for (iant=0; iant<in->nant; iant++) {
       /* Loop over antenna parameters */
       for (k=0; k<4; k++) {

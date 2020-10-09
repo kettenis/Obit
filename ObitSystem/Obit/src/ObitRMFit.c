@@ -1739,8 +1739,17 @@ static void NLRMFit (NLRMFitArg *arg)
       
     /* Errors wanted? */
     if (arg->doError) {
+      gsl_matrix *J;
+
       /* second argument removes degenerate col/row from Jacobean */
-      gsl_multifit_covar (arg->solver->J, 1.0e-8, arg->covar);
+      J = gsl_matrix_alloc(2*arg->nlamb2, 2);
+#ifdef HAVE_GSL_MULTIFIT_FDFSOLVER_JAC
+      gsl_multifit_fdfsolver_jac(arg->solver, J);
+#else
+      gsl_matrix_memcpy(J, arg->solver->J);
+#endif
+      gsl_multifit_covar (J, 1.0e-8, arg->covar);
+      gsl_matrix_free(J);
       arg->coef[nterm+0] = sqrt(gsl_matrix_get(arg->covar, 1, 1));
       arg->coef[nterm+1] = sqrt(gsl_matrix_get(arg->covar, 0, 0));
       arg->coef[4] = chi2;
