@@ -63,7 +63,7 @@ all:  $(TARGETS)
 
 # update the Obit version (svn revision)
 versionupdate:
-	python share/scripts/getVersion.py ${OBIT}
+	true
 
 # update dummy_cfitsio directory
 cfitsioupdate:
