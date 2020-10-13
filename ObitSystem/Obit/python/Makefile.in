@@ -82,8 +82,7 @@ all: $(TARGETS)
 # Build shared library for python interface
 $(TARGETS): setupdata.py $(MYLIBS)
 	rm -rf build
-	python makesetup.py
-	python setup.py build install --install-lib=.
+	python3 makesetup.py
 	python3 setup.py build install --install-lib=.
 
 # Build python/Obit interface
@@ -101,8 +100,7 @@ $(TARGETS): setupdata.py $(MYLIBS)
 # libObit.so for binary distribution, libObit.a for build from source:
 Obit: Obit_wrap.c ../lib/libObit.a
 	rm -rf build
-	python makesetup.py
-	python setup.py build install --install-lib=.
+	python3 makesetup.py
 	python3 setup.py build install --install-lib=.
 
 # Write compile/link info to setupdata.py
