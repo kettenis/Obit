@@ -2992,7 +2992,6 @@ fi
 
 
 # Checks for programs.
-CFLAGS="-g -O3"
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
 ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'

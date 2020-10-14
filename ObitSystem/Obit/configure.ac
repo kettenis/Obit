@@ -35,7 +35,6 @@ AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_CONFIG_SRCDIR(src/Obit.c)
 
 # Checks for programs.
-CFLAGS="-g -O3"
 AC_PROG_CC
 AC_PROG_RANLIB
 #AM_PATH_PYTHON(2.5)
