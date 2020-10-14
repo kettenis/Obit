@@ -981,7 +981,7 @@ ObitImage* setOutput (gchar *Source, olong iStoke, olong ant,
     /* Something in source name? */
     if ((Source[0]==' ') || (Source[0]==0)) 
       g_snprintf (stemp, 30, "Beam");
-    else g_snprintf (stemp, 30, Source);
+    else g_snprintf (stemp, 30, "%s", Source);
     ObitTrimTrail(stemp);  /* remove trailing blanks */
 	   
     IOType = OBIT_IO_FITS;  /* Save file type */
