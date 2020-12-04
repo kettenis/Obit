@@ -29,6 +29,11 @@
 #include "ObitSinCos.h"
 #include "ObitVecFunc.h"
 #include <math.h>
+
+#ifdef __APPLE__
+#define sincosf __sincosf
+#endif
+
 void sincosf(float x, float *sin, float *cos);
 
 #define OBITSINCOSNTAB  1024  /* tabulated points per turn */
