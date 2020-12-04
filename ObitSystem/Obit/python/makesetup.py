@@ -111,6 +111,6 @@ outfile.write('                              [\''+packageName+'_wrap.c\'],'+os.l
 outfile.write('                              extra_compile_args='+str(compileArgs)+','+os.linesep)
 outfile.write('                              library_dirs='+str(libDirs)+','+os.linesep)
 outfile.write('                              libraries='+str(libs)+','+os.linesep)
-outfile.write('                              runtime_library_dirs='+str(runtimeLibDirs)+')],'+os.linesep)
-outfile.write('       include_dirs='+str(incDirs)+os.linesep)
+outfile.write('                              runtime_library_dirs='+str(runtimeLibDirs)+','+os.linesep)
+outfile.write('                              include_dirs='+str(incDirs)+')]'+os.linesep)
 outfile.write(')')
